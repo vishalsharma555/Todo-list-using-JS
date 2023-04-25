@@ -1,0 +1,126 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>
+             Todo list using JS
+     </title>
+
+     <style type="text/css">
+
+                .container{
+                            padding:10px;
+                            border:1px solid;
+                            border-radius: 10px;
+                            width:40%;
+                            margin:auto;
+                        }
+
+                .container.input{
+                    width:87%;
+                    height:20px;
+                }
+
+                .container.btn{
+
+                    width:50px;
+                    height:25px;
+                    
+                }
+
+                .container ul{
+
+                    list-style:none;
+                    padding:0px;
+
+                }
+
+                .container li{
+                    color:red;
+                }
+
+                .container li a{
+
+                    float:right;
+                    color:black;
+                    text-decoration:none;
+                    font-weight:bold;
+                }
+
+                .container #error{
+
+                    color:red;
+                    font-size:14px;
+                }
+
+                </style>
+
+
+ </head>
+
+    <body>
+         <div class="container">
+                
+                    <ul id="box"></ul>
+                    <input type="text"  id="name" class="input"/>
+                    <input type="button" style="border-radius: 5px;"value="Add" id="btnclick" class="btn"
+                      onclick="addmore()" />
+                      <span id="error"></span>
+         </div>   
+
+            <script>
+
+                function addmore() {
+                    
+                    document.getElementById('error').innerHTML="";
+
+                    let name=document.getElementById('name').value;
+
+                    if (name=='') {
+
+                        document.getElementById('error').innerHTML="please enter value";
+                    }
+
+                    else{
+
+                        let box=document.getElementById('box');
+
+                        let li=document.createElement('li');
+
+                        li.textContent=name;
+
+                        let a=document.createElement('a');
+                        a.textContent="x";
+                        a.href="javascript:void(0)";
+                        a.className="remove";
+                        li.appendChild(a);
+
+                        let pos=box.firstElementChild;
+
+                        if(pos==null){
+
+                            box.appendChild(li);
+
+                        }
+
+                        else{
+                        box.insertBefore(li,pos);;
+
+                              }
+                          }
+
+                            document.getElementById('name').value="";
+                        }
+
+                             let btn=document.querySelector('ul');
+                            btn.addEventListener('click',function(e){
+
+                            let box=document.getElementById('box');
+                            let li=e.target.parentNode;
+                            box.removeChild(li);
+                });
+
+                 </script>
+        </body>
+ </html>
